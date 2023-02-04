@@ -1,0 +1,14 @@
+local targetUserIds = {41861268, 190970206, 4239973040, 314561170, 37931702, 3983688789, 19544831, 52377959, 479201080, 1066933679}
+local placeIdToJoin = 11599913094
+
+while true do
+    for _, player in pairs(game:GetService("Players"):GetPlayers()) do
+        for _, targetUserId in pairs(targetUserIds) do
+            if player.userId == targetUserId then
+                game:GetService("TeleportService"):Teleport(placeIdToJoin, game.Players.LocalPlayer)
+                return
+            end
+        end
+    end
+    wait(5)
+end
