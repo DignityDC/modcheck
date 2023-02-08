@@ -1,0 +1,27 @@
+local NotificationLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/lobox920/Notification-Library/main/Library.lua"))()
+local whitelist = {
+
+}
+
+local players = game:GetService("Players"):GetPlayers()
+for _, player in ipairs(players) do
+if #whitelist > 0 and not table.find(whitelist, player.Name) then
+-- Player is not in whitelist, skip
+continue
+end
+
+local character = player.Character
+
+if character then
+local head = character:FindFirstChild("Head")
+
+if head then
+local color = head.Color
+
+local certainty = math.max(math.min(math.floor((1.5 - (color.r + color.g + color.b)) * 100), 100), 0)
+
+           NotificationLibrary:SendNotification("Warning", "yo " .. player.Name .. " is " .. certainty .. "% black!", 5)
+           task.wait(2.5)
+end
+end
+end
